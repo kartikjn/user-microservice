@@ -1,12 +1,14 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { UserService } from './app.service';
+import { typeOrmConfig } from './config/typeorm.config';
+import { User } from './entity/user.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { typeOrmConfig } from './config/typeOrm.config';
 
 @Module({
   imports: [TypeOrmModule.forRoot(typeOrmConfig)],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [UserService],
 })
 export class AppModule {}

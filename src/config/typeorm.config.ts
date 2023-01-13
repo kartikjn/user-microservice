@@ -1,14 +1,15 @@
-/* eslint-disable prettier/prettier */
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import * as dotenv from 'dotenv';
 
-//a) Connect with DB. (Mongodb use mongoose OR Postgres use Typeorm)
+dotenv.config();
+
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'postgres',
-  username: 'postgres',
-  password: 'Nikhil123@',
-  host: 'localhost',
+  host: process.env.DB_HOST,
   port: 5432,
-  database: 'userManagement',
-  entities: [ __dirname + '/../**/*.entity{.ts,.js}',],
+  username: process.env.DB_Username,
+  password: process.env.DB_Password,
+  database: process.env.DB_Database,
+  entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   synchronize: true,
 };

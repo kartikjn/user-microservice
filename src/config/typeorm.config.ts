@@ -9,7 +9,7 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   port: 5432,
   username: process.env.DB_Username,
   password: process.env.DB_Password,
-  database: process.env.DB_Database,
+  database: 'user-management',
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   synchronize: true,
 };

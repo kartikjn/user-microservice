@@ -1,12 +1,26 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+/* eslint-disable prettier/prettier */
+import { Controller, Logger } from '@nestjs/common';
+import { UserService } from './app.service';
+import { GrpcMethod } from '@nestjs/microservices';
+
+interface  ICreateUserDto {
+  userID: string
+  password: string
+}
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  private logger = new Logger('AppController');
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  constructor(private readonly userservice: UserService) {}
+
+  @GrpcMethod('UserService', 'CreateUser')
+  async createUser(ICreateUserDto): Promise<ICreateUserDto> {
+     return await this.userservice.signup(ICreateUserDto);
+  }
+ 
+  @GrpcMethod('UserService', 'GetProfile')
+  async getProfile(userID: string): Promise<ICreateUserDto> {
+    return await this.userservice.find(userID);
   }
 }

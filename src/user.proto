@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package userdata;
+
+// Declare a service for each controller you have
+service UserService {
+  // Declare an rpc for each method that is called via gRPC
+  rpc CreateUser (CreateUserDto) returns (CreateUserDtoResponse);
+  rpc GetProfile (UserID) returns (CreateUserDtoResponse);
+}
+
+// Declare the types used above
+message CreateUserDtoResponse {
+  int32 id =1;
+  string userID = 2;
+  string password = 3;
+}
+message CreateUserDto {
+  string userID = 1;
+  string password = 2;
+}
+message UserID {
+  string userID = 1;
+}

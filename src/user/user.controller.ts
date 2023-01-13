@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Controller, Logger } from '@nestjs/common';
-import { UserService } from './app.service';
+import { UserService } from './user.service';
 import { GrpcMethod } from '@nestjs/microservices';
 
 interface  ICreateUserDto {
